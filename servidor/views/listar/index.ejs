@@ -7,8 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <% usuarios.forEach(function(){ %>
-    <% usuario.nome%>
-    <%}) %>
+    <% usuarios.forEach(function(usuario){ %>
+    <%= usuario.nome %>
+    <% usuario.id %>
+    <% }); %>
 </body>
 </html>
