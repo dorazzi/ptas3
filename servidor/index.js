@@ -25,7 +25,7 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
-  }).unless({ path: ["/sobre","/autenticar", "/logar", "/deslogar"] })
+  }).unless({ path: ["/sobre", "/autenticar", "/logar", "/deslogar"] })
 );
 
 app.get('/autenticar', async function(req, res){
@@ -40,6 +40,22 @@ app.get('/sobre', async function(req, res){
    res.cookie('token', null, { httpOnly: true });
   res.json({sobre: true})
 })
+
+app.get('/listar', async function(req, res){
+  const usuarios = await usuario.findAll();
+  res.json(usuarios)
+})
+
+app.get('/cadastro', async function(req, res){
+  res.render("listar")
+})
+
+app.post('/cadastro', async function(req, res){
+  const usuario_ = await usuario.create(req.body);
+  res.json(usuario_)
+})
+
+
 
 app.post('/logar', (req, res) => {
   if(req.body.user === 'ana' && req.body.password === '4321'){
