@@ -47,7 +47,7 @@ app.get('/listar', async function(req, res){
 })
 
 app.get('/cadastro', async function(req, res){
-  res.render("listar")
+  res.render("cadastro")
 })
 
 app.post('/cadastro', async function(req, res){
